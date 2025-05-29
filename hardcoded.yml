@@ -1,0 +1,21 @@
+name: Insecure Hardcoded Secrets Demo
+
+on: [push]
+
+jobs:
+  insecure-demo:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Show hardcoded credentials
+      run: |
+        echo "Connecting to database with:"
+        echo "API Key: ABC123-XYZ456-HARDCODED-KEY"
+        echo "DB Password: PlainTextPassword123"
+        
+    - name: Simulate API call with hardcoded key
+      run: |
+        echo "Making API call with key: ABC123-XYZ456-HARDCODED-KEY"
+        echo "Response: Success (but your key is now exposed!)"
