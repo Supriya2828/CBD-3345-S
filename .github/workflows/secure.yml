@@ -1,0 +1,15 @@
+name: Secure Secrets Demo
+on: [push]
+jobs:
+  secure-demo:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Show secure credentials
+      env:
+        API_KEY: ${{ secrets.API_KEY }}
+        DB_PASS: ${{ secrets.DB_PASSWORD }}
+      run: |
+        echo "Connecting securely:"
+        echo "API key length: ${#API_KEY} chars"
+        echo "DB pass length: ${#DB_PASS} chars"
